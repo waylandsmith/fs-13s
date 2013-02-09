@@ -9,5 +9,6 @@
   :name "rig"
   :version "0.1"
   :components ((:file "defpackage")
-               (:file "main" :depends-on ("defpackage")))
+               (:file "main" :depends-on ("defpackage"))
+               (:file "careers"))
   :depends-on ())
