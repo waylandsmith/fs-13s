@@ -187,7 +187,11 @@
 (defparameter *career* '(nil . nil))
 (defparameter *hp* 0)
 (defparameter *alignment* nil)
-
+(defparameter *saves* '((fort . nil)(ref . nil)(will . nil)))
+(defparameter *size* 0) ; medium
+; something for skills - but what data structure works best?
+; (defparameter *feats* nil)
+; atk - bab . grp
 ; person ends
 
 (defun show-abils ()
@@ -225,26 +229,31 @@
     (setf (gethash 'wis *abils*) wisdom)
     (setf (gethash 'cha *abils*) charisma)))
 
-(defun gen-cls ()
-  "picks a random d20 class"
-  (setf (car *career*) (aref available-classes (random 20)))
-  (setf (cdr *career*) (+ 1 (random 21)))) ; should eventually actually interoperate with the objects
+(defun gen-cls () ; should eventually have an optional arg for presupplied class
+  "randomly picks a random d20 class"
+  (setf (car *career*) (aref available-classes (random 20)))) ; should eventually actually interoperate with the objects
+
+(defun gen-lvl () ; should eventually take keyword args for presupplied level or ranges of levels
+  "randomly picks a class level"
+  (setf (cdr *career*) (1+ (random 21))))
 
 (defun gen-al (&optional align) ; add a keyword option to forbid certain alignments using recursion
-  "picks a d20 alignment"
-   (setf alignment (case align
-                         ((LE) '(Lawful_Evil))
-                         ((NE) '(Neutral_Evil))
-                         ((CE) '(Chaotic_Evil))
-                         ((LN) '(Lawful_Neutral))
-                         ((TN) '(True_Neutral))
-                         ((CN) '(Chaotic_Neutral))
-                         ((LG) '(Lawful_Neutral))
-                         ((NG) '(Neutral_Good))
-                         ((CG '(Chaotic_Good)))
-                         (otherwise (aref al (random 9))))))
+  "semi-randomly picks a d20 alignment"
+   (setf *alignment* (case align
+                           ((LE) '(Lawful_Evil))
+                           ((NE) '(Neutral_Evil))
+                           ((CE) '(Chaotic_Evil))
+                           ((LN) '(Lawful_Neutral))
+                           ((TN) '(True_Neutral))
+                           ((CN) '(Chaotic_Neutral))
+                           ((LG) '(Lawful_Neutral))
+                           ((NG) '(Neutral_Good))
+                           ((CG '(Chaotic_Good)))
+                           (otherwise (aref al (random 9))))))
 
-
+(defun gen-ppl () ; need to complete this.  And also accept keyword args for banned species or a specific species
+  "semi-randomly picks a d20 race"
+  ())
 
 #|
 (defun diepool (num sides) ; and some &rest args
