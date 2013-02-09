@@ -3,7 +3,7 @@ license information
 
 ## Copyright (C) 2013 Matthew Meneghini
 
-#### This program (the Random Individual Generator or RIG) is based off of the d20 System Reference Document.
+#### This program (the Random Individual Generator or RIG) is based off of the d20 System Reference Document (3.5).
 ##### The d20 System Reference Document is licensed under the Open Game License. Per the terms of the Open Game License, the copyright notice and license are available below. You may use the RIG under the same license terms as the Open Game License below.
 
 # OPEN GAME LICENSE Version 1.0a 

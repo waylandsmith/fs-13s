@@ -193,6 +193,17 @@
 ; (defparameter *feats* nil)
 ; atk - bab . grp
 ; person ends
+#|
+(defun lvlup ()
+  "one of the main functions, applies a new level to the character"
+  (let* ((hip ())
+         )))
+|#
+
+(defun abilmod (score)
+  "calculates a d20 3.5 ability modifier"
+  ; f(x) = 0.5x - 5
+  (- (floor (* score 1/2)) 5))
 
 (defun show-abils ()
   "a shortcut to see the contents of hashtable *abils*"
