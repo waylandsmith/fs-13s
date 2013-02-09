@@ -193,12 +193,39 @@
 ; (defparameter *feats* nil)
 ; atk - bab . grp
 ; person ends
-#|
-(defun lvlup ()
+
+(defun goodsv (lvl)
+  "a good saving throw"
+  ; f(x) = 0.5x + 2
+  (+ (floor (* lvl 1/2)) 2))
+
+(defun poorsv (lvl)
+  "a poor saving throw"
+  ; f(x) = (1/3)x
+  (floor (* lvl 1/3)))
+
+(defun svis (your-class sv lvl)
+  "gives the base save for a given class and level"
+  (case sv
+        ((fort) (if (eq 'good (cls-fort your-class))
+                    (goodsv lvl)
+                    (poorsv lvl)))
+        ((ref) (if (eq 'good (cls-ref your-class))
+                    (goodsv lvl)
+                    (poorsv lvl)))
+        ((will) (if (eq 'good (cls-will your-class))
+                    (goodsv lvl)
+                    (poorsv lvl)))))
+
+(defun applylvls (lvl)
   "one of the main functions, applies a new level to the character"
-  (let* ((hip ())
-         )))
-|#
+  (let* ((hip (+ (die (cls-hp (car *career*))) 
+                 (abilmod (gethash 'con *abils*))))
+         (fort (svis (car *career*) 'fort lvl)) ; how is this malformed?  I don't understand.
+         (reflex (svis (car *career*) 'ref lvl))
+         (will (svis (car *career*) 'will lvl)))
+    )
+  )
 
 (defun abilmod (score)
   "calculates a d20 3.5 ability modifier"
