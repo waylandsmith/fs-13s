@@ -1,15 +1,75 @@
 ;;;; 2013-02-05 16:02:09
 ;;;; Behold, the power of lisp.
 
-;(in-package :rig)
+;(defparameter *installpath* "") ; 
 
-; my first stab at making my own Lisp engine
+#|
+(defun set-install-path ()
+  )
+|#
+(require :asdf)
+;(load (concatenate 'string *installpath* "/careers"))
+(in-package :rig)
 
-; (defparameter *al-table* 0) ; have a table for alignment
+; character classes
 
-;(defparameter *al* '((Order (Lawful Neutral Chaotic))
-;                     (Morals (Good Neutral Evil)))) ; I feel like there's a better data structure for this.
-; maybe an array?  I'd prefer an array.
+(defstruct cls ; this would be a class in any other language
+  name
+  hp
+  bab
+  fort
+  ref
+  will
+  sp)
+
+(defparameter *adept* (make-cls :name "Adept" ; this is an instance of an object.  make-cls is a constructor.
+                                :hp 6 ; CL also creates methods to get each of these values automatically
+                                :bab 'poor ; e.g.: (cls-bab *adept*) returns POOR
+                                :fort 'bad
+                                :ref 'bad
+                                :will 'good
+                                :sp 2))
+;(defparameter *aristocrat* #S(cls :name "Aristocrat" :hp 8 :bab 'avg :fort 'good :ref 'bad :will 'good :sp 4)) ; throws a error on save, but does seem to mostly work.
+
+(defparameter *aristocrat* (make-cls :name "Aristocrat" :hp 8 :bab 'avg :fort 'good :ref 'poor :will 'good :sp 4))
+
+(defparameter *commoner* (make-cls :name "Commoner0" :hp 4 :bab 'half :fort 'poor :ref 'poor :will 'poor :sp 2))
+
+(defparameter *expert* (make-cls :name "Expert" :hp 6 :bab 'half :fort 'poor :ref 'poor :will 'good :sp 6))
+
+(defparameter *warrior* (make-cls :name "Warrior" :hp 8 :bab 'full :fort 'good :ref 'poor :will 'poor :sp 2))
+
+(defparameter *soulknife* (make-cls :name "Soulknife" :hp 10 :bab 'avg :fort 'poor :ref 'good :will 'good :sp 4))
+
+(defparameter *psywar* (make-cls :name "Psychic Warrior" :hp 8 :bab 'avg :fort 'good :ref 'poor :will 'poor :sp 2))
+
+(defparameter *psion* (make-cls :name "Psion" :hp 4 :bab 'half :fort 'poor :ref 'poor :will 'good :sp 2))
+
+(defparameter *wilder* (make-cls :name "Wilder" :hp 6 :bab 'avg :fort 'poor :ref 'poor :will 'good :sp 4))
+                                
+(defparameter *barbarian* (make-cls :name "Barbarian" :hp 12 :bab 'full :fort 'good :ref 'poor :will 'poor :sp 4))
+
+(defparameter *bard* (make-cls :name "Bard" :hp 6 :bab 'avg :fort 'poor :ref 'good :will 'good :sp 6))                              
+
+(defparameter *cleric* (make-cls :name "Cleric" :hp 8 :bab 'avg  :fort 'good :ref 'poor :will 'good :sp 2))
+                                                             
+(defparameter *druid* (make-cls :name "Druid" :hp 8 :bab 'avg :fort 'good :ref 'poor :will 'good :sp 4))
+
+(defparameter *fighter* (make-cls :name "Fighter" :hp 10 :bab 'full :fort 'good :ref 'poor :will 'poor :sp 2))
+
+(defparameter *monk* (make-cls :name "Monk" :hp 8 :bab 'avg :fort 'good :ref 'good :will 'good :sp 4))                              
+
+(defparameter *paladin* (make-cls :name "Paladin" :hp 10 :bab 'full :fort 'good :ref 'poor :will 'good :sp 2))                                                                  
+                                                                  
+(defparameter *ranger* (make-cls :name "Ranger" :hp 8 :bab 'full :fort 'good :ref 'poor :will 'good :sp 6))                                                              
+                                 
+(defparameter *rogue* (make-cls :name "Rogue" :hp 6 :bab 'avg :fort 'good :ref 'good :will 'poor :sp 8))
+
+(defparameter *sorcerer* (make-cls :name "Sorceror" :hp 4 :bab 'half :fort 'poor :ref 'poor :will 'good :sp 2))
+
+(defparameter *wizard* (make-cls :name "Wizard" :hp 4 :bab 'half :fort 'poor :ref 'poor :will 'good :sp 2))
+
+; character classes end
 
 (defun die (sides) ; roll a die!
   (+ 1 (random sides)))
@@ -40,147 +100,6 @@
 
 (setf (gethash 'adept *hcls*) '((bab . full)(hp . 6)(sp . 2)(fort . bad)(ref . bad)(will . good))) ; wait - is there no other way to make a CL hashtable? lame.
 
-
-(defstruct cls ; this would be a class in any other language
-  name
-  hp
-  bab
-  fort
-  ref
-  will
-  sp)
-
-(defparameter *adept* (make-cls :name "Adept" ; this is an instance of an object.  make-cls is a constructor.
-                                :hp 6 ; CL also creates methods to get each of these values automatically
-                                :bab 'poor ; e.g.: (cls-bab *adept*) returns POOR
-                                :fort 'bad
-                                :ref 'bad
-                                :will 'good
-                                :sp 2))
-;(defparameter *aristocrat* #S(cls :name "Aristocrat" :hp 8 :bab 'avg :fort 'good :ref 'bad :will 'good :sp 4)) ; throws a error on save, but does seem to mostly work.
-
-(defparameter *aristocrat* (make-cls :name "Aristocrat" :hp 8 :bab 'avg :fort 'good :ref 'poor :will 'good :sp 4))
-
-
-(defparameter *commoner* (make-cls :name "Commoner0" :hp 4 :bab 'half :fort 'poor :ref 'poor :will 'poor :sp 2))
-
-(defparameter *expert* (make-cls :name "Expert"
-                                 :hp 6
-                                 :bab 'half
-                                 :fort 'poor
-                                 :ref 'poor
-                                 :will 'good
-                                 :sp 6))
-
-(defparameter *warrior* (make-cls :name "Warrior"
-                                  :hp 8
-                                  :bab 'full
-                                  :fort 'good
-                                  :ref 'poor
-                                  :will 'poor
-                                  :sp 2))
-
-(defparameter *soulknife* (make-cls :name "Soulknife"
-                                 :hp 10
-                                 :bab 'avg
-                                 :fort 'poor
-                                 :ref 'good
-                                 :will 'good
-                                 :sp 4))
-
-(defparameter *psywar* (make-cls :name "Psychic Warrior"
-                                 :hp 8
-                                 :bab 'avg
-                                 :fort 'good
-                                 :ref 'poor
-                                 :will 'poor
-                                 :sp 2))
-
-(defparameter *psion* (make-cls :name "Psion"
-                                :hp 4
-                                :bab 'half
-                                :fort 'poor
-                                :ref 'poor
-                                :will 'good
-                                :sp 2))
-
-(defparameter *wilder* (make-cls :name "Wilder"
-                                 :hp 6
-                                 :bab 'avg
-                                 :fort 'poor
-                                 :ref 'poor
-                                 :will 'good
-                                 :sp 4))
-
-(defparameter *barbarian* (make-cls :name "Barbarian"
-                                    :hp 12
-                                    :bab 'full
-                                    :fort 'good
-                                    :ref 'poor
-                                    :will 'poor
-                                    :sp 4))
-
-(defparameter *bard* (make-cls :name "Bard"
-                               :hp 6
-                               :bab 'avg
-                               :fort 'poor
-                               :ref 'good
-                               :will 'good
-                               :sp 6))
-
-(defparameter *cleric* (make-cls :name "Cleric"
-                                 :hp 8
-                                 :bab 'avg
-                                 :fort 'good
-                                 :ref 'poor
-                                 :will 'good
-                                 :sp 2))
-
-(defparameter *druid* (make-cls :name "Druid"
-                                :hp 8
-                                :bab 'avg
-                                :fort 'good
-                                :ref 'poor
-                                :will 'good
-                                :sp 4))
-
-(defparameter *fighter* (make-cls :name "Fighter"
-                                  :hp 10
-                                  :bab 'full
-                                  :fort 'good
-                                  :ref 'poor
-                                  :will 'poor
-                                  :sp 2))
-
-(defparameter *monk* (make-cls :name "Monk"
-                               :hp 8
-                               :bab 'avg
-                               :fort 'good
-                               :ref 'good
-                               :will 'good
-                               :sp 4))
-
-(defparameter *paladin* (make-cls :name "Paladin"
-                                  :hp 10
-                                  :bab 'full
-                                  :fort 'good
-                                  :ref 'poor
-                                  :will 'good
-                                  :sp 2))
-
-(defparameter *ranger* (make-cls :name "Ranger"
-                                 :hp 8
-                                 :bab 'full
-                                 :fort 'good
-                                 :ref 'poor
-                                 :will 'good
-                                 :sp 6))
-
-(defparameter *rogue* (make-cls :name "Rogue" :hp 6 :bab 'avg :fort 'good :ref 'good :will 'poor :sp 8))
-
-(defparameter *sorcerer* (make-cls :name "Sorceror" :hp 4 :bab 'half :fort 'poor :ref 'poor :will 'good :sp 2))
-
-(defparameter *wizard* (make-cls :name "Wizard" :hp 4 :bab 'half :fort 'poor :ref 'poor :will 'good :sp 2))
 
 ; person stats
 (defparameter *abils* (make-hash-table)) ; shouldn't be an array
@@ -224,7 +143,7 @@
          (fort (svis (car *career*) 'fort lvl)) ; how is this malformed?  I don't understand.
          (reflex (svis (car *career*) 'ref lvl))
          (will (svis (car *career*) 'will lvl)))
-    )
+    (setf *hp* hip))
   )
 
 (defun abilmod (score)

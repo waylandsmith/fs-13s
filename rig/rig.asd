@@ -1,5 +1,6 @@
 ;;;; 2013-02-05 16:02:09
 
+(requires :asdf)
 (defpackage #:rig-asd
   (:use :cl :asdf))
 
@@ -10,5 +11,6 @@
   :version "0.1"
   :components ((:file "defpackage")
                (:file "main" :depends-on ("defpackage"))
-               (:file "careers"))
+               (:file "careers")
+               (:file "foo"))
   :depends-on ())
