@@ -7,9 +7,9 @@
 (defun set-install-path ()
   )
 |#
-(require :asdf)
+;(require :asdf)
 ;(load (concatenate 'string *installpath* "/careers"))
-(in-package :rig)
+;(in-package :rig)
 
 ; character classes
 
@@ -31,43 +31,157 @@
                                 :sp 2))
 ;(defparameter *aristocrat* #S(cls :name "Aristocrat" :hp 8 :bab 'avg :fort 'good :ref 'bad :will 'good :sp 4)) ; throws a error on save, but does seem to mostly work.
 
-(defparameter *aristocrat* (make-cls :name "Aristocrat" :hp 8 :bab 'avg :fort 'good :ref 'poor :will 'good :sp 4))
+(defparameter *aristocrat* (make-cls :name "Aristocrat"
+                                     :hp 8
+                                     :bab 'avg
+                                     :fort 'good
+                                     :ref 'poor
+                                     :will 'good
+                                     :sp 4))
 
-(defparameter *commoner* (make-cls :name "Commoner0" :hp 4 :bab 'half :fort 'poor :ref 'poor :will 'poor :sp 2))
+(defparameter *commoner* (make-cls :name "Commoner"
+                                   :hp 4
+                                   :bab 'half 
+                                   :fort 'poor
+                                   :ref 'poor
+                                   :will 'poor
+                                   :sp 2))
 
-(defparameter *expert* (make-cls :name "Expert" :hp 6 :bab 'half :fort 'poor :ref 'poor :will 'good :sp 6))
+(defparameter *expert* (make-cls :name "Expert"
+                                 :hp 6
+                                 :bab 'half 
+                                 :fort 'poor 
+                                 :ref 'poor 
+                                 :will 'good 
+                                 :sp 6))
 
-(defparameter *warrior* (make-cls :name "Warrior" :hp 8 :bab 'full :fort 'good :ref 'poor :will 'poor :sp 2))
+(defparameter *warrior* (make-cls :name "Warrior"
+                                  :hp 8
+                                  :bab 'full
+                                  :fort 'good
+                                  :ref 'poor
+                                  :will 'poor
+                                  :sp 2))
 
-(defparameter *soulknife* (make-cls :name "Soulknife" :hp 10 :bab 'avg :fort 'poor :ref 'good :will 'good :sp 4))
+(defparameter *soulknife* (make-cls :name "Soulknife"
+                                    :hp 10
+                                    :bab 'avg
+                                    :fort 'poor
+                                    :ref 'good
+                                    :will 'good
+                                    :sp 4))
 
-(defparameter *psywar* (make-cls :name "Psychic Warrior" :hp 8 :bab 'avg :fort 'good :ref 'poor :will 'poor :sp 2))
+(defparameter *psywar* (make-cls :name "Psychic Warrior"
+                                 :hp 8
+                                 :bab 'avg
+                                 :fort 'good
+                                 :ref 'poor
+                                 :will 'poor
+                                 :sp 2))
 
-(defparameter *psion* (make-cls :name "Psion" :hp 4 :bab 'half :fort 'poor :ref 'poor :will 'good :sp 2))
+(defparameter *psion* (make-cls :name "Psion"
+                                :hp 4
+                                :bab 'half
+                                :fort 'poor
+                                :ref 'poor
+                                :will 'good
+                                :sp 2))
 
-(defparameter *wilder* (make-cls :name "Wilder" :hp 6 :bab 'avg :fort 'poor :ref 'poor :will 'good :sp 4))
+(defparameter *wilder* (make-cls :name "Wilder"
+                                 :hp 6
+                                 :bab 'avg
+                                 :fort 'poor
+                                 :ref 'poor
+                                 :will 'good
+                                 :sp 4))
                                 
-(defparameter *barbarian* (make-cls :name "Barbarian" :hp 12 :bab 'full :fort 'good :ref 'poor :will 'poor :sp 4))
+(defparameter *barbarian* (make-cls :name "Barbarian"
+                                    :hp 12
+                                    :bab 'full
+                                    :fort 'good 
+                                    :ref 'poor
+                                    :will 'poor
+                                    :sp 4))
 
-(defparameter *bard* (make-cls :name "Bard" :hp 6 :bab 'avg :fort 'poor :ref 'good :will 'good :sp 6))                              
+(defparameter *bard* (make-cls :name "Bard"
+                               :hp 6
+                               :bab 'avg
+                               :fort 'poor
+                               :ref 'good
+                               :will 'good
+                               :sp 6))                              
 
-(defparameter *cleric* (make-cls :name "Cleric" :hp 8 :bab 'avg  :fort 'good :ref 'poor :will 'good :sp 2))
-                                                             
-(defparameter *druid* (make-cls :name "Druid" :hp 8 :bab 'avg :fort 'good :ref 'poor :will 'good :sp 4))
+(defparameter *cleric* (make-cls :name "Cleric"
+                                 :hp 8 
+                                 :bab 'avg
+                                 :fort 'good
+                                 :ref 'poor
+                                 :will 'good
+                                 :sp 2))
+                            
+(defparameter *druid* (make-cls :name "Druid"
+                                :hp 8
+                                :bab 'avg
+                                :fort 'good
+                                :ref 'poor
+                                :will 'good
+                                :sp 4))
 
-(defparameter *fighter* (make-cls :name "Fighter" :hp 10 :bab 'full :fort 'good :ref 'poor :will 'poor :sp 2))
+(defparameter *fighter* (make-cls :name "Fighter"
+                                  :hp 10 
+                                  :bab 'full 
+                                  :fort 'good 
+                                  :ref 'poor 
+                                  :will 'poor 
+                                  :sp 2))
 
-(defparameter *monk* (make-cls :name "Monk" :hp 8 :bab 'avg :fort 'good :ref 'good :will 'good :sp 4))                              
+(defparameter *monk* (make-cls :name "Monk" 
+                               :hp 8 
+                               :bab 'avg 
+                               :fort 'good 
+                               :ref 'good 
+                               :will 'good 
+                               :sp 4))                              
 
-(defparameter *paladin* (make-cls :name "Paladin" :hp 10 :bab 'full :fort 'good :ref 'poor :will 'good :sp 2))                                                                  
+(defparameter *paladin* (make-cls :name "Paladin"
+                                  :hp 10 
+                                  :bab 'full 
+                                  :fort 'good 
+                                  :ref 'poor 
+                                  :will 'good 
+                                  :sp 2))                                                                  
                                                                   
-(defparameter *ranger* (make-cls :name "Ranger" :hp 8 :bab 'full :fort 'good :ref 'poor :will 'good :sp 6))                                                              
-                                 
-(defparameter *rogue* (make-cls :name "Rogue" :hp 6 :bab 'avg :fort 'good :ref 'good :will 'poor :sp 8))
+(defparameter *ranger* (make-cls :name "Ranger"                                                           
+                                 :hp 8 
+                                 :bab 'full 
+                                 :fort 'good 
+                                 :ref 'poor 
+                                 :will 'good 
+                                 :sp 6))   
 
-(defparameter *sorcerer* (make-cls :name "Sorceror" :hp 4 :bab 'half :fort 'poor :ref 'poor :will 'good :sp 2))
+(defparameter *rogue* (make-cls :name "Rogue" 
+                                :hp 6 
+                                :bab 'avg 
+                                :fort 'good 
+                                :ref 'good 
+                                :will 'poor 
+                                :sp 8))
 
-(defparameter *wizard* (make-cls :name "Wizard" :hp 4 :bab 'half :fort 'poor :ref 'poor :will 'good :sp 2))
+(defparameter *sorcerer* (make-cls :name "Sorceror" 
+                                   :hp 4 
+                                   :bab 'half 
+                                   :fort 'poor 
+                                   :ref 'poor 
+                                   :will 'good 
+                                   :sp 2))
+
+(defparameter *wizard* (make-cls :name "Wizard" 
+                                 :hp 4 
+                                 :bab 'half 
+                                 :fort 'poor 
+                                 :ref 'poor 
+                                 :will 'good 
+                                 :sp 2))
 
 ; character classes end
 
@@ -93,7 +207,7 @@
 
 (defparameter available-classes (make-array 20
                                             :initial-contents
-                                            '((*barbarian*)(*bard*)(*cleric*)(*druid*)(*fighter*)(*monk*)(*paladin*)(*ranger*)(*rogue*)(*sorceror*)(*wizard*)(*psion*)(*psywar*)(*soulknife*)(*wilder*)(*adept*)(*aristocrat*)(*commoner*)(*expert*)(*warrior*))))
+                                            '(*barbarian* *bard* *cleric* *druid* *fighter* *monk* *paladin* *ranger* *rogue* *sorceror* *wizard* *psion* *psywar* *soulknife* *wilder* *adept* *aristocrat* *commoner* *expert* *warrior*)))
 
 (defparameter *hcls* (make-hash-table))
 ; genetic setter: (setf (gethash 'foo *cls*) '25))
@@ -136,20 +250,23 @@
                     (goodsv lvl)
                     (poorsv lvl)))))
 
-(defun applylvls (lvl)
-  "one of the main functions, applies a new level to the character"
-  (let* ((hip (+ (die (cls-hp (car *career*))) 
-                 (abilmod (gethash 'con *abils*))))
-         (fort (svis (car *career*) 'fort lvl)) ; how is this malformed?  I don't understand.
-         (reflex (svis (car *career*) 'ref lvl))
-         (will (svis (car *career*) 'will lvl)))
-    (setf *hp* hip))
-  )
-
 (defun abilmod (score)
   "calculates a d20 3.5 ability modifier"
   ; f(x) = 0.5x - 5
   (- (floor (* score 1/2)) 5))
+
+(defun applylvls (lvl)
+  "one of the main functions, applies a new level to the character"
+  (let* ((hip (+ (die (cls-hp (car *career*))) 
+                 (abilmod (gethash 'con *abils*))))
+         (fortitude (svis (car *career*) 'fort lvl))
+         (reflex (svis (car *career*) 'ref lvl))
+         (will (svis (car *career*) 'will lvl)))
+    (setf *hp* hip)
+    (setf (cdr (assoc 'fort *saves*)) fortitude)
+    (setf (cdr (assoc 'ref *saves*)) reflex)
+    (setf (cdr (assoc 'will *saves*)) will))
+  )
 
 (defun show-abils ()
   "a shortcut to see the contents of hashtable *abils*"
@@ -186,9 +303,10 @@
     (setf (gethash 'wis *abils*) wisdom)
     (setf (gethash 'cha *abils*) charisma)))
 
-(defun gen-cls () ; should eventually have an optional arg for presupplied class
+(defun gen-cls (&optional cclass) 
   "randomly picks a random d20 class"
-  (setf (car *career*) (aref available-classes (random 20)))) ; should eventually actually interoperate with the objects
+  (if (not cclass)  (setf (car *career*) (aref available-classes (random 20)))
+      (setf (car *career*) cclass))) ; should eventually actually interoperate with the objects
 
 (defun gen-lvl () ; should eventually take keyword args for presupplied level or ranges of levels
   "randomly picks a class level"
@@ -211,6 +329,37 @@
 (defun gen-ppl () ; need to complete this.  And also accept keyword args for banned species or a specific species
   "semi-randomly picks a d20 race"
   ())
+
+(defun wipe ()
+  "wipes the character values"
+  (setf (gethash 'ste *abils*) 0)
+  (setf (gethash 'dex *abils*) 0)
+  (setf (gethash 'con *abils*) 0)
+  (setf (gethash 'ine *abils*) 0)
+  (setf (gethash 'wis *abils*) 0)
+  (setf (gethash 'cha *abils*) 0)
+  (setf *career* '(nil . nil))
+  (setf *hp* 0)
+  (setf *alignment* nil)
+  (setf *saves* '((fort . nil)(ref . nil)(will . nil))))
+
+(defun rig-main (&key glass)
+  "the main function"
+  (wipe)
+  (gen-al)
+  (gen-abils)
+  (gen-cls glass)
+  (gen-lvl)
+  (applylvls (cdr *career*))
+  (show-abils)
+  (terpri)
+  (format t "Class / Level: ~$" *career*)
+  (format t "~$ hit points" *hp*)
+  (terpri)
+  (princ *alignment*)
+  (terpri)
+  (format t "Saving throws: ~$" *saves*)
+  )
 
 #|
 (defun diepool (num sides) ; and some &rest args
